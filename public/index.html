@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Laboratorios</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .parent {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 100%;
+        gap: 0px 0px;
+        grid-template-areas: ". .";
+      }
+
+      #div1 {
+        grid-area: 1 / 1 / 2 / 2;
+        align-content: center;
+        width: 50vw;
+      }
+      #div2 {
+        grid-area: 1 / 1 / 2 / 2;
+        align-content: center;
+        width: 50vw;
+      }
+
+      .proto {
+        font-family: "Poppins";
+        font-size: 42px;
+        margin-top: 3%;
+      }
+
+      #fondo_barra {
+        background-color: #aa0013;
+        height: 120px;
+        min-width: 100%;
+      }
+
+      #fondo_pie {
+        background-color: rgba(78, 78, 78, 0.5);
+      }
+
+      #fuente-footer {
+        font-family: "Poppins";
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-light" id="fondo_barra">
+      <div>
+        <div>
+          <div id="marge-nav">
+            <div class="parent">
+              <center>
+                <div id="div1">
+                  <h1 style="text-align:center" id="letra_blanca" class="proto">
+                    Centro de Laboratorios
+                  </h1>
+                </div>
+              </center>
+
+              <div id="div2">
+                <center>
+                  <a
+                    class="navbar-brand"
+                    href="https://udemedellin.edu.co/"
+                    aling="right"
+                  >
+                    <img
+                      alt="udem"
+                      src="./img/logo_udem.png"
+                      width="400"
+                      height="100"
+                    />
+                  </a>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="root"></div>
+  </body>
+</html>

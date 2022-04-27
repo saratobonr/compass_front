@@ -1,0 +1,9 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "correo": "prueba@correo.com",
+      "password": 1234
+    }
+  ]
+}

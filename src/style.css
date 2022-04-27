@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("./fuentes/poppins/Poppins-Regular.ttf");
+}
+
+#proto {
+  font-family: "Poppins";
+  font-size: 32px;
+}
+
+#letra_blanca {
+  color: white;
+}
+
+#borde {
+  border-radius: 45px;
+  box-shadow: 5px 10px 14px 2px rgba(0, 0, 0, 0.1);
+  border-width: 3px;
+}
+
+.container-fluid {
+  max-width: 90%;
+  max-height: 50%;
+  margin-top: 15%;
+}
+
+.container {
+  min-width: 100%;
+}
