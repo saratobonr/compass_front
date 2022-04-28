@@ -28,7 +28,6 @@ export function LabHome() {
     <div id="btns">
             <div className="btn-group">
              
-
               <Link style={{ textDecoration: 'none', color: '#000' }} to="/lab">
               <button
                 id="tamaño-botones"
@@ -41,7 +40,7 @@ export function LabHome() {
               </button>
               </Link>
 
-              <Link style={{ textDecoration: 'none', color: '#000' }} to="/ficha">
+              <Link style={{ textDecoration: 'none', color: '#000' }} to="/fichaHome">
                 <button
                   id="tamaño-botones"
                   type="button"

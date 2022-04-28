@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export function CuerpoLab() {
   const [campos, setCampos] = useState({
-    nombre_laboratorio: '',
-    bloque: '',
-    nivel: '',
-    aula: '',
-    capacidad: '',
-    area: '',
+    nombre_laboratorio: "",
+    bloque: "",
+    nivel: "",
+    aula: "",
+    capacidad: "",
+    area: "",
     red_hidraulica: false,
     red_gases_especiales: false,
     red_electrica: false,
     red_aire: false,
-    otros: '',
+    otros: "",
   });
 
-  const postLabs = async e => {
+  const postLabs = async (e) => {
     let lab = {
       nombre_laboratorio: campos.nombre_laboratorio,
       bloque: campos.bloque,
@@ -33,10 +33,10 @@ export function CuerpoLab() {
       otros: campos.otros,
     };
     e.preventDefault();
-    await axios.post('http://localhost:5610/api/v1/laboratorios', lab);
+    await axios.post("http://localhost:5610/api/v1/laboratorios", lab);
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     const value = e.target.value;
     setCampos({
       ...campos,
@@ -44,14 +44,14 @@ export function CuerpoLab() {
     });
   };
 
-  const onChangeCheck = e => {
-    const {checked} = e.target;
-    if(checked){
+  const onChangeCheck = (e) => {
+    const { checked } = e.target;
+    if (checked) {
       setCampos({
         ...campos,
         [e.target.name]: true,
       });
-    }else{
+    } else {
       setCampos({
         ...campos,
         [e.target.name]: false,
@@ -145,10 +145,10 @@ export function CuerpoLab() {
             <div className="col" id="espacio-checkbox-text">
               <label htmlFor="">Hidráulica</label>
               <input
-                style={{ marginLeft: '8%' }}
+                style={{ marginLeft: "8%" }}
                 type="checkbox"
                 id="hidraulica"
-                name='red_hidraulica'
+                name="red_hidraulica"
                 value={campos.red_hidraulica}
                 onChange={onChangeCheck}
               />
@@ -156,10 +156,10 @@ export function CuerpoLab() {
             <div className="col">
               <label>Gases</label>
               <input
-                style={{ marginLeft: '8%' }}
+                style={{ marginLeft: "8%" }}
                 type="checkbox"
                 id="gases"
-                name='red_gases_especiales'
+                name="red_gases_especiales"
                 value={campos.red_gases_especiales}
                 onChange={onChangeCheck}
               />
@@ -167,10 +167,10 @@ export function CuerpoLab() {
             <div className="col">
               <label>Eléctrica</label>
               <input
-                style={{ marginLeft: '8%' }}
+                style={{ marginLeft: "8%" }}
                 type="checkbox"
                 id="electrica"
-                name='red_electrica'
+                name="red_electrica"
                 value={campos.red_electrica}
                 onChange={onChangeCheck}
               />
@@ -178,10 +178,10 @@ export function CuerpoLab() {
             <div className="col">
               <label>Aire</label>
               <input
-                style={{ marginLeft: '8%' }}
+                style={{ marginLeft: "8%" }}
                 type="checkbox"
                 id="aire"
-                name='red_aire'
+                name="red_aire"
                 value={campos.red_aire}
                 onChange={onChangeCheck}
               />
@@ -198,27 +198,27 @@ export function CuerpoLab() {
             value={campos.otros}
             onChange={onChange}
           ></textarea>
-<br />
-          
-              <Link style={{ textDecoration: 'none', color: '#000' }} to="/home">
-                <button
-                  id="tamaño-botones2"
-                  type="button"
-                  className="btn btn-outline-danger"
-                  style={ {marginRight:'5%'}}
-                >
-                  Cancelar
-                </button>
-              </Link>
-              <button
-                id="tamaño-botones2"
-                type="button"
-                className="btn btn-outline-success"
-                onClick={postLabs}
-              >
-                Crear
-              </button>
-            
+          <br />
+
+          <Link style={{ textDecoration: "none", color: "#000" }} to="/home">
+            <button
+              id="tamaño-botones2"
+              type="button"
+              className="btn btn-outline-danger"
+              style={{ marginRight: "5%" }}
+            >
+              Cancelar
+            </button>
+          </Link>
+          <button
+            id="tamaño-botones2"
+            type="button"
+            className="btn btn-outline-success"
+            onClick={postLabs}
+          >
+            Crear
+          </button>
+
           <br />
         </nav>
       </div>
