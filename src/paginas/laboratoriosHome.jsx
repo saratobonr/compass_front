@@ -18,11 +18,42 @@ export function LabHome() {
 
   return (
     <div>
-      <Link style={{ textDecoration: "none", color: "#000" }} to="/lab">
+      {/*<Link style={{ textDecoration: "none", color: "#000" }} to="/lab">
         <button id="margen-btn" type="button" className="btn btn-outline-success">
           Agregar Laboratorio
         </button>
-      </Link>
+  </Link>*/}
+
+
+    <div id="btns">
+            <div className="btn-group">
+             
+
+              <Link style={{ textDecoration: 'none', color: '#000' }} to="/lab">
+              <button
+                id="tamaño-botones"
+                type="button"
+                className="btn btn-outline-success"
+                style={{ marginRight: '7%' }}
+                
+              >
+                Agregar laboratorio
+              </button>
+              </Link>
+
+              <Link style={{ textDecoration: 'none', color: '#000' }} to="/ficha">
+                <button
+                  id="tamaño-botones"
+                  type="button"
+                  className="btn btn-outline-success"
+                  
+                >
+                  Fichas
+                </button>
+              </Link>
+            </div>
+          </div>
+
 
       <br />
       <nav id="margen">

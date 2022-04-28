@@ -56,10 +56,8 @@ export function AgregarLaboratorista() {
                 />
               </div>
             </div>
-            <br />
-
-            <div id="btns">
-              <div class="btn-group">
+          
+   {/*}
                 <Link
                   style={{ textDecoration: "none", color: "#000" }}
                   to="/home"
@@ -68,6 +66,7 @@ export function AgregarLaboratorista() {
                     id="tamaño-botones"
                     type="button"
                     class="btn btn-outline-danger"
+                    style={{ marginRight: "10%"}}
                   >
                     Cancelar
                   </button>
@@ -79,9 +78,29 @@ export function AgregarLaboratorista() {
                   style={{ marginLeft: "10%" }}
                 >
                   Agregar
-                </button>
-              </div>
-            </div>
+  </button> */}
+
+<Link
+        style={{ textDecoration: "none", color: "#000" }}
+        to="/home"
+      >
+        <button
+          type="button"    
+          id="tamaño-botones2"      
+          className="btn btn-outline-danger"
+          style={{marginRight: "5%"}}
+        >
+                  Cancelar
+        </button>
+      </Link>
+              <button
+                type="button"
+                id="tamaño-botones2"
+                className="btn btn-outline-success"                
+              >
+                Agregar
+              </button>
+              
           </nav>
         </div>
       </div>

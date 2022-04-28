@@ -28,10 +28,12 @@ export function ElementosHome() {
   return (
     <div>
       <Link style={{ textDecoration: 'none', color: '#000' }} to="/elementos">
-        <button id="margen-btn" type="button" className="btn btn-outline-success">
+        <button id="margen-btn" type="button" className="btn btn-outline-success" style={{marginRight: "14%"}}>
           Agregar Elemento
         </button>
       </Link>
+
+      <button id='margen-btn' type='button' className='btn btn-outline-success' >Descargar excel</button>
 
       <br />
       <nav id="margen">

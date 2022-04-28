@@ -8,6 +8,8 @@ import { LaboratoristasHome } from "./paginas/laboratoristasHome";
 import { LabHome } from "./paginas/laboratoriosHome";
 import Login from "./paginas/login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { CrearFicha } from "./paginas/ficha";
+import { FichaHome } from "./paginas/fichaHome";
 
 export function App() {
   return (
@@ -27,6 +29,8 @@ export function App() {
           element={<AgregarLaboratorista />}
         ></Route>
         <Route path="labHome" element={<LabHome />}></Route>
+        <Route path="ficha" element={<CrearFicha/>}></Route>
+        <Route path="fichaHome" element={<FichaHome/>}></Route>
       </Routes>
     </BrowserRouter>
   );

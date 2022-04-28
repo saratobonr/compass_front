@@ -25,9 +25,20 @@
   margin-top: 2%;
   font-size: 25px;
   font-family: "Poppins";
+  position: fixed;
+  right: 5%;
 }
 
 #btns {
   right: 7%;
   position: absolute;
+}
+
+#tamaño-botones2 {
+  border-radius: 5px;
+  margin-top: 2%;
+  font-size: 25px;
+  font-family: "Poppins";
+  position: inherit;
+  right: 5%;
 }

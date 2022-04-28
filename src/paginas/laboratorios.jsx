@@ -63,7 +63,7 @@ export function CuerpoLab() {
     <div className="margen" id="fuente">
       <div className="shadow-lg p-3 mb-5 bg-body rounded">
         <h1 calign="center" id="margen-titulo">
-          Agregar Labotoratorio
+          Agregar Labotoratorios
         </h1>
 
         <nav className="margen">
@@ -198,29 +198,27 @@ export function CuerpoLab() {
             value={campos.otros}
             onChange={onChange}
           ></textarea>
-
-          <div id="btns">
-            <div className="btn-group">
-              <Link style={{ textDecoration: 'none', color: '#000' }} to="/LabHome">
+<br />
+          
+              <Link style={{ textDecoration: 'none', color: '#000' }} to="/home">
                 <button
-                  id="tamaño-botones"
+                  id="tamaño-botones2"
                   type="button"
                   className="btn btn-outline-danger"
+                  style={ {marginRight:'5%'}}
                 >
                   Cancelar
                 </button>
               </Link>
               <button
-                id="tamaño-botones"
+                id="tamaño-botones2"
                 type="button"
                 className="btn btn-outline-success"
-                style={{ marginLeft: '10%' }}
                 onClick={postLabs}
               >
                 Crear
               </button>
-            </div>
-          </div>
+            
           <br />
         </nav>
       </div>

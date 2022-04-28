@@ -3,7 +3,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 export function CrearElementos() {
-  //useState para laboratorios
+  //useState para laboratorios ORGANIZARLO CON FICHA
   const [labs, setLabs] = useState([]);
   const getLabs = async () => {
     await axios
@@ -58,6 +58,7 @@ export function CrearElementos() {
         <h1 calign="center" id="margen-titulo">
           Crear Elemento
         </h1>
+
         <nav className="margen">
           <div className="row">
             <div className="col">
@@ -169,10 +170,11 @@ export function CrearElementos() {
               />
             </div>
 
+            {/* ORGANIZAR EL MAP CON LA TABLA FICHA*/}
             <div className="col">
               <br />
               <select className="form-select-lg">
-                <option >Seleccione un laboratorio</option>
+                <option >Seleccione una ficha</option>
                 {labs.map(item => {
                   return (
                     <option key={item.id_laboratorio}>{item.nombre_laboratorio}</option>
@@ -180,7 +182,7 @@ export function CrearElementos() {
                 })}
               </select>
             </div>
-          </div>
+          </div>          
 
           <br />
           <div>
@@ -195,35 +197,34 @@ export function CrearElementos() {
                 value={campos.observaciones}
                 onChange={onChange}
               ></textarea>
-            </div>
+            </div>            
           </div>
 
-          <div id="btns">
-            <div className="btn-group">
-              <Link
-                style={{ textDecoration: "none", color: "#000" }}
-                to="/elementosHome"
-              >
-                <button
-                  type="button"
-                  id="tamaño-botones"
-                  className="btn btn-outline-danger"
-                >
+                
+<Link
+        style={{ textDecoration: "none", color: "#000" }}
+        to="/home"
+      >
+        <button
+          type="button"    
+          id="tamaño-botones2"      
+          className="btn btn-outline-danger"
+          style={{marginRight: "5%"}}
+        >
                   Cancelar
-                </button>
-              </Link>
+        </button>
+      </Link>
               <button
                 type="button"
-                className="btn btn-outline-success"
-                id="tamaño-botones"
-                style={{ left: "10%" }}
+                id="tamaño-botones2"
+                className="btn btn-outline-success"                
+                
                 onClick={postElements}
               >
-                Crear
+                Agregar
               </button>
-            </div>
-          </div>
-          <br />
+
+            
         </nav>
       </div>
     </div>
