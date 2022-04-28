@@ -1,109 +1,183 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 export function CrearElementos() {
+  //useState para laboratorios
+  const [labs, setLabs] = useState([]);
+  const getLabs = async () => {
+    await axios
+      .get('http://localhost:5610/api/v1/laboratorios')
+      .then(res => setLabs(res.data.data))
+      .catch(err => console.log(err));
+  };
+  useEffect(() => {
+    getLabs();
+  }, []);
+  //useState para elementos
+  const [campos, setCampos] = useState({
+    numero_inventario: 0,
+    nombre_elemento: '',
+    cantidad: 0,
+    marca: '',
+    modelo: '',
+    tipo: '',
+    serie: '',
+    estado: '',
+    observaciones: '',
+    descripcion: '',
+  });
+
+  const postElements = async e => {
+    let lab = {
+      numero_inventario: campos.numero_inventario,
+      nombre_elemento: campos.nombre_elemento,
+      cantidad: campos.cantidad,
+      marca: campos.marca,
+      modelo: campos.modelo,
+      tipo: campos.tipo,
+      serie: campos.serie,
+      estado: campos.estado,
+      observaciones: campos.observaciones,
+      descripcion: campos.descripcion,
+    };
+    e.preventDefault();
+    await axios.post('http://localhost:5610/api/v1/elementos', lab);
+  };
+
+  const onChange = e => {
+    const value = e.target.value;
+    setCampos({
+      ...campos,
+      [e.target.name]: value,
+    });
+  };
   return (
-    <div class="margen" id="fuente">
-      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <div className="margen" id="fuente">
+      <div className="shadow-lg p-3 mb-5 bg-body rounded">
         <h1 calign="center" id="margen-titulo">
           Crear Elemento
         </h1>
-        <nav class="margen">
-          <div class="row">
-            <div class="col">
+        <nav className="margen">
+          <div className="row">
+            <div className="col">
               <label>Número inventario</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="number"
-                id="num_inventario"
+                id="id_num_inventario"
+                name="numero_inventario"
+                value={campos.numero_inventario}
+                onChange={onChange}
               />
             </div>
-            <div class="col">
+            <div className="col">
               <label>Tipo de elemento</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="tipo"
+                id="id_tipo"
+                name="tipo"
+                value={campos.tipo}
+                onChange={onChange}
               />
             </div>
           </div>
           <br />
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <label>Nombre del elemento</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="nombre_elemento"
+                id="id_nombre_elemento"
+                name="nombre_elemento"
+                value={campos.nombre_elemento}
+                onChange={onChange}
               />
             </div>
-            <div class="col">
+            <div className="col">
               <label>Descripcion</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="descripcion"
+                id="id_descripcion"
+                name="descripcion"
+                value={campos.descripcion}
+                onChange={onChange}
               />
             </div>
           </div>
           <br />
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <label>Marca</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="modelo"
+                id="id_marca"
+                name="marca"
+                value={campos.marca}
+                onChange={onChange}
               />
             </div>
-            <div class="col">
+            <div className="col">
               <label>Modelo</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="tipo_elemento"
+                id="id_modelo"
+                name="modelo"
+                value={campos.modelo}
+                onChange={onChange}
               />
             </div>
           </div>
           <br />
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <label>Serie</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="serie"
+                id="id_serie"
+                name="serie"
+                value={campos.serie}
+                onChange={onChange}
               />
             </div>
-            <div class="col">
+            <div className="col">
               <label>Fecha actualización</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="estado_elemento"
+                id="id_fecha_actualizacion"
               />
             </div>
           </div>
           <br />
-          <div class="row">
-            <div class="col">
+          <div className="row">
+            <div className="col">
               <label>Estado del elemento</label>
               <input
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 type="text"
-                id="estado_elemento"
+                id="id_estado"
+                name="estado"
+                value={campos.estado}
+                onChange={onChange}
               />
             </div>
 
-            {/* alimentar el selecte con la base de datos*/}
-            <div class="col">
+            <div className="col">
               <br />
-              <select class="form-select-lg">
-                <option selected>Seleccione un laboratorio</option>
-                <option value="1">Química</option>
-                <option value="2">Software</option>
-                <option value="3">Física</option>
+              <select className="form-select-lg">
+                <option >Seleccione un laboratorio</option>
+                {labs.map(item => {
+                  return (
+                    <option key={item.id_laboratorio}>{item.nombre_laboratorio}</option>
+                  );
+                })}
               </select>
             </div>
           </div>
@@ -114,16 +188,18 @@ export function CrearElementos() {
               <label>Observaciones</label>
               <br />
               <textarea
-                name="comentarios"
-                id="comen"
+                name="observaciones"
+                id="id_observaciones"
                 cols="30"
                 rows="3"
+                value={campos.observaciones}
+                onChange={onChange}
               ></textarea>
             </div>
           </div>
 
           <div id="btns">
-            <div class="btn-group">
+            <div className="btn-group">
               <Link
                 style={{ textDecoration: "none", color: "#000" }}
                 to="/elementosHome"
@@ -131,16 +207,17 @@ export function CrearElementos() {
                 <button
                   type="button"
                   id="tamaño-botones"
-                  class="btn btn-outline-danger"
+                  className="btn btn-outline-danger"
                 >
                   Cancelar
                 </button>
               </Link>
               <button
                 type="button"
-                class="btn btn-outline-success"
+                className="btn btn-outline-success"
                 id="tamaño-botones"
                 style={{ left: "10%" }}
+                onClick={postElements}
               >
                 Crear
               </button>

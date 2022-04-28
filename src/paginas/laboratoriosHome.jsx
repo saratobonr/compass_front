@@ -1,19 +1,32 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./style-eH.css";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 export function LabHome() {
+  const [labs, setLabs] = useState([]);
+
+  const getLabs = async () => {
+    await axios
+      .get('http://localhost:5610/api/v1/laboratorios')
+      .then(res => setLabs(res.data.data))
+      .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    getLabs();
+  }, []);
+
   return (
     <div>
       <Link style={{ textDecoration: "none", color: "#000" }} to="/lab">
-        <button id="margen-btn" type="button" class="btn btn-outline-success">
+        <button id="margen-btn" type="button" className="btn btn-outline-success">
           Agregar Laboratorio
         </button>
       </Link>
 
       <br />
       <nav id="margen">
-        <table class="table" id="letra-tabla">
+        <table className="table" id="letra-tabla">
           <thead style={{ color: "white", backgroundColor: "#aa0013" }}>
             <tr>
               <th scope="col">Código</th>
@@ -26,7 +39,7 @@ export function LabHome() {
               <th scope="col">Redes</th>
               <th scope="col">Otros</th>
               <th scope="col">
-                <button type="button" class="btn btn-outline-secondary">
+                <button type="button" className="btn btn-outline-secondary">
                   <img
                     alt="view elements"
                     src={require("./pencil_white.png")}
@@ -38,55 +51,29 @@ export function LabHome() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Química</td>
-              <td>3</td>
-              <td>2</td>
-              <td>201</td>
-              <td>25</td>
-              <td>50 metros</td>
-              <td>
-                <ul>
-                  <li>Eléctrica</li>
-                  <li>Gases</li>
-                  <li>Aire</li>
-                </ul>
-              </td>
-              <td>Apto para clases prácticas y teoricas</td>
-              {/* esta parte se debe poner a cada elemento agregado **/}
-              <td>
-                <div class="radio">
-                  <label>
-                    <input type="radio" id="regular" name="optradio" />
-                  </label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Software</td>
-              <td>3</td>
-              <td>2</td>
-              <td>204</td>
-              <td>15</td>
-              <td>40 metros</td>
-              <td>
-                <ul>
-                  <li>Eléctrica</li>
-                  <li>Aire</li>
-                </ul>
-              </td>
-              <td>Apto para clases prácticas de electronica</td>
-              {/* esta parte se debe poner a cada elemento agregado **/}
-              <td>
-                <div class="radio">
-                  <label>
-                    <input type="radio" id="regular" name="optradio" />
-                  </label>
-                </div>
-              </td>
-            </tr>
+          {labs.map(item => {
+              return (
+                <tr key={item.id_laboratorio}>
+                  <th scope="row">{item.id_laboratorio}</th>
+                  <td>{item.nombre_laboratorio}</td>
+                  <td>{item.bloque}</td>
+                  <td>{item.nivel}</td>
+                  <td>{item.aula}</td>
+                  <td>{item.capacidad}</td>
+                  <td>{item.area}</td>
+                  <td>
+                    <ul>
+                      <li>{item.red_hidraulica ? "Red hidraulica" : "No red hidraulica"}</li>
+                      <li>{item.red_gases_especiales ? "Red gases especiales" : "No red gases especiales"}</li>
+                      <li>{item.red_electrica ? "Red electrica" : "No red electrica"}</li>
+                      <li>{item.red_aire ? "Red aire" : "No red aire"}</li>
+                    </ul>
+                  </td>
+                  <td>{item.otros}</td>
+
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </nav>
