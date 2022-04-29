@@ -3,16 +3,18 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 export function CrearElementos() {
+  //useState para el select
+  const [select,setSelect] = useState();
   //useState para laboratorios ORGANIZARLO CON FICHA
-  const [labs, setLabs] = useState([]);
-  const getLabs = async () => {
+  const [fichas, setFichas] = useState([]);
+  const getFichas = async () => {
     await axios
-      .get('http://localhost:5610/api/v1/laboratorios')
-      .then(res => setLabs(res.data.data))
+      .get('http://localhost:5610/api/v1/ficha')
+      .then(res => setFichas(res.data.data))
       .catch(err => console.log(err));
   };
   useEffect(() => {
-    getLabs();
+    getFichas();
   }, []);
   //useState para elementos
   const [campos, setCampos] = useState({
@@ -29,7 +31,7 @@ export function CrearElementos() {
   });
 
   const postElements = async e => {
-    let lab = {
+    let elemento = {
       numero_inventario: campos.numero_inventario,
       nombre_elemento: campos.nombre_elemento,
       cantidad: campos.cantidad,
@@ -42,7 +44,7 @@ export function CrearElementos() {
       descripcion: campos.descripcion,
     };
     e.preventDefault();
-    await axios.post('http://localhost:5610/api/v1/elementos', lab);
+    await axios.post('http://localhost:5610/api/v1/elementos', elemento);
   };
 
   const onChange = e => {
@@ -170,14 +172,13 @@ export function CrearElementos() {
               />
             </div>
 
-            {/* ORGANIZAR EL MAP CON LA TABLA FICHA*/}
             <div className="col">
               <br />
-              <select className="form-select-lg">
+              <select className="form-select-lg" value={select} onChange={e=>setSelect(e.target.value)}>
                 <option >Seleccione una ficha</option>
-                {labs.map(item => {
+                {fichas.map(item => {
                   return (
-                    <option key={item.id_laboratorio}>{item.nombre_laboratorio}</option>
+                    <option key={item.codigo_ficha}>{item.codigo_ficha}</option>
                   );
                 })}
               </select>

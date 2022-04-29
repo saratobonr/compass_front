@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './style-eH.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ExportExcel from 'react-export-excel'
+
+const ExcelFile = ExportExcel.ExcelFile;
+const ExcelSheet = ExportExcel.ExcelSheet;
+const ExcelColumn = ExportExcel.ExcelColumn;
 
 /*
 import {
@@ -13,7 +18,6 @@ import {
 
 export function ElementosHome() {
   const [elementos, setElementos] = useState([]);
-
   const getElementos = async () => {
     await axios
       .get('http://localhost:5610/api/v1/elementos')
@@ -25,15 +29,30 @@ export function ElementosHome() {
     getElementos();
   }, []);
 
+
   return (
     <div>
       <Link style={{ textDecoration: 'none', color: '#000' }} to="/elementos">
-        <button id="margen-btn" type="button" className="btn btn-outline-success" style={{marginRight: "14%"}}>
+        <button id="margen-btn" type="button" className="btn btn-outline-success" style={{marginRight: "16%"}}>
           Agregar Elemento
         </button>
       </Link>
+      <ExcelFile element={<button id='margen-btn' type='button' className="btn btn-outline-success" style={{marginRight: "0%"}}>Descargar Excel</button>} filename='elementos'>
+        <ExcelSheet data={elementos} name='elementos de laboratorio'>
+        <ExcelColumn label='CODIGO_ELEMENTO' value='codigo_elemento'></ExcelColumn>
+        <ExcelColumn label='NOMBRE' value='nombre_elemento'></ExcelColumn>
+        <ExcelColumn label='MARCA' value='marca'></ExcelColumn>
+        <ExcelColumn label='CANTIDAD' value='cantidad'></ExcelColumn>
+        <ExcelColumn label='MARCA' value='marca'></ExcelColumn>
+        <ExcelColumn label='MODELO' value='modelo'></ExcelColumn>
+        <ExcelColumn label='TIPO' value='tipo'></ExcelColumn>
+        <ExcelColumn label='SERIE' value='serie'></ExcelColumn>
+        <ExcelColumn label='FECHA_ACTUALIZACION' value='fecha_actualizacion'></ExcelColumn>
+        <ExcelColumn label='ESTADO' value='estado'></ExcelColumn>
+        <ExcelColumn label='OBSERVACIONES' value='observaciones'></ExcelColumn>
+        </ExcelSheet>
+      </ExcelFile>
 
-      <button id='margen-btn' type='button' className='btn btn-outline-success' >Descargar excel</button>
 
       <br />
       <nav id="margen">
