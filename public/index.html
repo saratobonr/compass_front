@@ -12,6 +12,10 @@
     />
 
     <style>
+      @font-face {
+        font-family: "Poppins";
+        src: url("./fuentes/poppins/Poppins-Regular.ttf");
+      }
       .parent {
         display: grid;
         grid-template-columns: auto auto;
@@ -45,10 +49,6 @@
 
       #fondo_pie {
         background-color: rgba(78, 78, 78, 0.5);
-      }
-
-      #fuente-footer {
-        font-family: "Poppins";
       }
     </style>
   </head>
@@ -88,6 +88,6 @@
       </div>
     </nav>
 
-    <div id="root"></div>
+    <div class="container" id="root"></div>
   </body>
 </html>

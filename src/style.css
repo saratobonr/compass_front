@@ -20,10 +20,23 @@
 
 .container-fluid {
   max-width: 90%;
-  max-height: 50%;
-  margin-top: 15%;
+  max-height: 30%;
+  margin-top: 10%;  
+  height: calc(100vh - 380px);
 }
 
 .container {
   min-width: 100%;
 }
+
+.footer {
+  text-align: center;
+  font-family: "Poppins";
+  padding: 3px;
+  background-color: rgba(78, 78, 78, 0.5);
+  color: white;
+  height: 160px;
+  width: 100%;
+  font-size: 13px;
+}
+
