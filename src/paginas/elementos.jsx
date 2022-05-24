@@ -1,10 +1,8 @@
-import React,{useState,useEffect} from "react";
-import "./style.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import './style.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 export function CrearElementos() {
-  //useState para el select
-  const [select,setSelect] = useState();
   //useState para laboratorios ORGANIZARLO CON FICHA
   const [fichas, setFichas] = useState([]);
   const getFichas = async () => {
@@ -44,6 +42,7 @@ export function CrearElementos() {
       descripcion: campos.descripcion,
     };
     e.preventDefault();
+    console.log(elemento);
     await axios.post('http://localhost:5610/api/v1/elementos', elemento);
   };
 
@@ -75,15 +74,26 @@ export function CrearElementos() {
               />
             </div>
             <div className="col">
-              <label>Tipo de elemento</label>
-              <input
-                className="form-control form-control-lg"
-                type="text"
-                id="id_tipo"
+              <br />
+              <select
+                className="form-select-lg"
                 name="tipo"
                 value={campos.tipo}
                 onChange={onChange}
-              />
+              >
+                <option key="seleccione" value="default">
+                  Seleccione Tipo
+                </option>
+                <option key="Insumo" value="Insumo">
+                  Insumo
+                </option>
+                <option key="Producto" value="Producto">
+                  Producto
+                </option>
+                <option key="Tipo3" value="Tipo 3">
+                  Tipo 3
+                </option>
+              </select>
             </div>
           </div>
           <br />
@@ -149,14 +159,6 @@ export function CrearElementos() {
                 onChange={onChange}
               />
             </div>
-            <div className="col">
-              <label>Fecha actualización</label>
-              <input
-                className="form-control form-control-lg"
-                type="text"
-                id="id_fecha_actualizacion"
-              />
-            </div>
           </div>
           <br />
           <div className="row">
@@ -171,19 +173,7 @@ export function CrearElementos() {
                 onChange={onChange}
               />
             </div>
-
-            <div className="col">
-              <br />
-              <select className="form-select-lg" value={select} onChange={e=>setSelect(e.target.value)}>
-                <option >Seleccione una ficha</option>
-                {fichas.map(item => {
-                  return (
-                    <option key={item.codigo_ficha}>{item.codigo_ficha}</option>
-                  );
-                })}
-              </select>
-            </div>
-          </div>          
+          </div>
 
           <br />
           <div>
@@ -198,34 +188,27 @@ export function CrearElementos() {
                 value={campos.observaciones}
                 onChange={onChange}
               ></textarea>
-            </div>            
+            </div>
           </div>
 
-                
-<Link
-        style={{ textDecoration: "none", color: "#000" }}
-        to="/home"
-      >
-        <button
-          type="button"    
-          id="tamaño-botones2"      
-          className="btn btn-outline-danger"
-          style={{marginRight: "5%"}}
-        >
-                  Cancelar
-        </button>
-      </Link>
-              <button
-                type="button"
-                id="tamaño-botones2"
-                className="btn btn-outline-success"                
-                
-                onClick={postElements}
-              >
-                Agregar
-              </button>
-
-            
+          <Link style={{ textDecoration: 'none', color: '#000' }} to="/home">
+            <button
+              type="button"
+              id="tamaño-botones2"
+              className="btn btn-outline-danger"
+              style={{ marginRight: '5%' }}
+            >
+              Cancelar
+            </button>
+          </Link>
+          <button
+            type="button"
+            id="tamaño-botones2"
+            className="btn btn-outline-success"
+            onClick={postElements}
+          >
+            Agregar
+          </button>
         </nav>
       </div>
     </div>

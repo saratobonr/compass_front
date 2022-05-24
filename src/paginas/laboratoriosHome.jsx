@@ -1,7 +1,7 @@
-import React,{useState,useEffect} from "react";
-import "./style-eH.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import './style-eH.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 export function LabHome() {
   const [labs, setLabs] = useState([]);
 
@@ -24,40 +24,36 @@ export function LabHome() {
         </button>
   </Link>*/}
 
+      <div id="btns">
+        <div className="btn-group">
+          <Link style={{ textDecoration: 'none', color: '#000' }} to="/lab">
+            <button
+              id="tamaño-botones"
+              type="button"
+              className="btn btn-outline-success"
+              style={{ marginRight: '7%' }}
+            >
+              Laboratorio
+            </button>
+          </Link>
 
-    <div id="btns">
-            <div className="btn-group">
-             
-              <Link style={{ textDecoration: 'none', color: '#000' }} to="/lab">
-              <button
-                id="tamaño-botones"
-                type="button"
-                className="btn btn-outline-success"
-                style={{ marginRight: '7%' }}
-                
-              >
-                Agregar laboratorio
-              </button>
-              </Link>
-
-              <Link style={{ textDecoration: 'none', color: '#000' }} to="/fichaHome">
-                <button
-                  id="tamaño-botones"
-                  type="button"
-                  className="btn btn-outline-success"
-                  
-                >
-                  Fichas
-                </button>
-              </Link>
-            </div>
-          </div>
-
+          <Link style={{ textDecoration: 'none', color: '#000' }} to="/ficha">
+            <button
+              id="tamaño-botones"
+              type="button"
+              className="btn btn-outline-success"
+              style={{ marginLeft: '13%' }}
+            >
+              Fichas
+            </button>
+          </Link>
+        </div>
+      </div>
 
       <br />
       <nav id="margen">
         <table className="table" id="letra-tabla">
-          <thead style={{ color: "white", backgroundColor: "#aa0013" }}>
+          <thead style={{ color: 'white', backgroundColor: '#aa0013' }}>
             <tr>
               <th scope="col">Código</th>
               <th scope="col">Nombre Laboratoio</th>
@@ -68,7 +64,7 @@ export function LabHome() {
               <th scope="col">Área</th>
               <th scope="col">Redes</th>
               <th scope="col">Otros</th>
-              <th scope="col">
+              {/*}  <th scope="col">
                 <button type="button" className="btn btn-outline-secondary">
                   <img
                     alt="view elements"
@@ -77,11 +73,11 @@ export function LabHome() {
                     height="20"
                   />
                 </button>
-              </th>
+</th> */}
             </tr>
           </thead>
           <tbody>
-          {labs.map(item => {
+            {labs.map(item => {
               return (
                 <tr key={item.id_laboratorio}>
                   <th scope="row">{item.id_laboratorio}</th>
@@ -93,14 +89,19 @@ export function LabHome() {
                   <td>{item.area}</td>
                   <td>
                     <ul>
-                      <li>{item.red_hidraulica ? "Red hidraulica" : "No red hidraulica"}</li>
-                      <li>{item.red_gases_especiales ? "Red gases especiales" : "No red gases especiales"}</li>
-                      <li>{item.red_electrica ? "Red electrica" : "No red electrica"}</li>
-                      <li>{item.red_aire ? "Red aire" : "No red aire"}</li>
+                      <li>
+                        {item.red_hidraulica ? 'Red hidraulica' : 'No red hidraulica'}
+                      </li>
+                      <li>
+                        {item.red_gases_especiales
+                          ? 'Red gases especiales'
+                          : 'No red gases especiales'}
+                      </li>
+                      <li>{item.red_electrica ? 'Red electrica' : 'No red electrica'}</li>
+                      <li>{item.red_aire ? 'Red aire' : 'No red aire'}</li>
                     </ul>
                   </td>
                   <td>{item.otros}</td>
-
                 </tr>
               );
             })}

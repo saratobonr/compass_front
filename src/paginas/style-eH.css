@@ -40,6 +40,11 @@
 }
 
 #btns {
-  right: 7%;
+  right: 6%;
+  margin-top: 2%;
   position: absolute;
+}
+
+#b-margen{
+  margin-bottom: 2%;
 }
